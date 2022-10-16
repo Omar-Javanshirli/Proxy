@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Width="300">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="230"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" FontSize="20"/>
+                <TextBox Grid.Row="1" Width="200" Height="30" HorizontalAlignment="Left" Text="{Binding Data,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged" >
+                            <i:InvokeCommandAction Command="{Binding TextChangeCommand}" ></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <Canvas Grid.Row="1">
+                    <Button Width="70" Height="25" BorderThickness="0" Content="Submit" Canvas.Right="10" Canvas.Top="38"/>
+                </Canvas>
+                <ListBox Grid.Row="2" x:Name="helpLb" ItemsSource="{Binding GetData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Background="Aqua"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
